@@ -27,6 +27,12 @@ allprojects {
             trimTrailingWhitespace()
             endWithNewline()
         }
+        // Formatting for any of the documentation files.
+        freshmark {
+            target("*.md")
+            endWithNewline()
+            indentWithSpaces()
+        }
     }
 }
 
