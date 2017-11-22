@@ -22,10 +22,6 @@ public class Dijkstra {
   private final ImmutableValueGraph<Node, Integer> graph;
   private Node source;
 
-  public Dijkstra(final UUID graphUuid, final GraphService graphService) {
-    this.graph = ImmutableValueGraph.copyOf(graphService.getByUuid(graphUuid));
-  }
-
   public Dijkstra(final ImmutableValueGraph<Node, Integer> graph) {
     this.graph = graph;
   }

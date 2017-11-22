@@ -57,7 +57,7 @@ class Algorithm {
               final UUID uuid = databaseGraph.getUuid();
               final ValueGraph<Node, Integer> graph = databaseGraph.getGraph();
               sendEvent(Messages.beginningComputationForGraph(uuid));
-              final Dijkstra dijkstra = new Dijkstra(ImmutableValueGraph.copyOf(graph));
+              final Dijkstra dijkstra = new Dijkstra(uuid, graphService);
               graph
                   .nodes()
                   .forEach(node -> saveShortestPath(uuid, node, dijkstra.computeForSource(node)));
