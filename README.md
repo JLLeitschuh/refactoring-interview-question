@@ -28,7 +28,25 @@ re-enabled and made to pass.
  simply assigning their parameters to fields.
  - In IntelliJ pressing `F6` when a class is selected in the project view will pull up a UI to help
  moving classes. This can also be used to move static methods to another class.
+ - If a symbol can't be resolved after moving it, make sure that the type has the right access level.
+   Eg. `private`, `public`, `protected`, "package private".
+   In Kotlin `internal` is nearly equivalent to Java's "package private".
  - Look for TODOs in the source code for additional pointers.
+
+## Solutions to Potential Problems
+
+When moving code around IntelliJ may cause problems where IntelliJ can't find symbols it should be able to find.
+If you start seeing `java: cannot find symbol` and you think the type should be seen by the compiler try the following:
+ - Refresh your projects by using `⌘ + Shift + A` and typing "refresh all external projects". 
+   Then hit enter.
+ - From the top menu do `Build -> Rebuild Project`.
+ 
+If this does not work then try the following.
+ 
+ - Click the "Gradle" tab on the right side of IntelliJ. 
+   Then click the blue refresh button on the Gradle tab that has appeared.
+   Then try `Build -> Rebuild Project` again.
+ - Contact me directly with your problem.
 
 ## Environment Setup
 
@@ -60,3 +78,7 @@ submission passes all tests and conforms to the style formatter.
 ### Reformatting Your Code Before Submission
 
 To reformat your code quickly simply run `./gradlew spotlessApply`.
+
+## Preparing For Your Interview
+
+Be prepared to discuss your solution during your interview.
