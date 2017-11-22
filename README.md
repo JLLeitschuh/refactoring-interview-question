@@ -13,9 +13,9 @@ re-enabled and made to pass.
 
  - You are not allowed to change any code inside of the `external` sub-project.
  - The `monolith` project must depend upon the `library` project and the `external` project.
-   The `library` project can not depend upon the `external` project. 
+   The `library` project can not depend upon the `external` project.
    (The project is already configured this way, if you don't touch the build files you should be fine.)
- - You should not need to change the `AlgorithmEngineTest` but you are free to change the 
+ - You should not need to change the `AlgorithmEngineTest` but you are free to change the
    `AlgorithmEngine` as much as you wish.
 
 ## Hints
@@ -26,8 +26,9 @@ re-enabled and made to pass.
  - Are there fields in classes that are not being used?
  - In general, constructors should "do no work". Instead, try to make it so that constructors are
  simply assigning their parameters to fields.
- - In IntelliJ pressing `F6` when a class is selected in the project view will pull up a UI to help 
+ - In IntelliJ pressing `F6` when a class is selected in the project view will pull up a UI to help
  moving classes. This can also be used to move static methods to another class.
+ - Look for TODOs in the source code for additional pointers.
 
 ## Environment Setup
 
@@ -47,4 +48,3 @@ submission passes all tests and conforms to the style formatter.
 ### Reformatting Your Code Before Submission
 
 To reformat your code quickly simply run `./gradlew spotlessApply`.
- 
