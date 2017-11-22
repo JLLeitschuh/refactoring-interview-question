@@ -35,9 +35,21 @@ You will need:
  - JDK 8 installed on your machine with the `$JAVA_HOME` environment variable set correctly.
  - A recent version of IntelliJ IDE Community Edition.
 
-### Importing Project into IntelliJ
+### Configure [IntelliJ IDEA Community Edition](https://www.jetbrains.com/idea/)
 
-**TODO!**
+In order to setup IntelliJ for development use the following steps:
+
+1. If you already have a project open use `File -> Open` or just select `Open` from the welcome screen.
+2. Select the [settings.gradle](settings.gradle) file and click `Open`.
+3. When prompted:
+    1. Un-check the `Create seperate module per source set` option.
+    2. Check the `Use auto-import` option.
+    3. Make sure the `Gradle JVM` option is set to `1.8`.
+4. Wait for the project to load.
+5. Update your Kotlin Plugin:
+    1. Open the Kotlin Plugin Updates window using `⌘ + Shift + A` and typing "kotlin plugin updates".
+    2. Ensure `Stable` is selected and press `Check for updates`.
+    3. Update and restart IntelliJ when prompted (if necessary).
 
 ## Testing Before Submission
 
