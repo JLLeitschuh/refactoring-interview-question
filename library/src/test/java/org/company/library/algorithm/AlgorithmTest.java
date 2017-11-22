@@ -18,7 +18,7 @@ import org.company.library.graph.Node;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-@Disabled("These tests should all pass when you are done.")
+@Disabled("TODO: These tests should all pass when you are done.")
 public class AlgorithmTest {
   /**
    * @param graphs A fake of all of the graphs in the database.
@@ -97,7 +97,7 @@ public class AlgorithmTest {
   }
 
   /* ******************************************************** *
-   * What other tests might be relevant?                      *
+   * TODO: What other tests might be relevant?                *
    * Consider testing that shortest paths actually get saved? *
    * ******************************************************** */
 }
