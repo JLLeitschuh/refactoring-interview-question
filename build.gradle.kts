@@ -33,12 +33,23 @@ allprojects {
 subprojects {
     apply {
         plugin("java-library")
+        plugin("kotlin")
         plugin("org.junit.platform.gradle.plugin")
     }
 
     dependencies {
+
         "api"(kotlin("stdlib", Versions.KOTLIN))
         "api"(kotlin("reflect", Versions.KOTLIN))
+        "api"(group = "com.google.guava", name = "guava", version = "22.0")
+
+        /*
+         * Gives you various options of assertion library you would like to use.
+         * You don't have to use either of these if you don't want to.
+         */
+        "testImplementation"(group = "com.natpryce", name = "hamkrest", version = "1.4.1.0")
+        "testImplementation"(group = "org.hamcrest", name = "hamcrest-all", version = "1.3")
+        "testImplementation"(group = "it.ozimov", name = "guava-hamcrest-matchers", version = "1.3.0")
 
         fun junitJupiter(name: String) = create(group = "org.junit.jupiter", name = name, version = "5.1.0-M1")
         "testImplementation"(junitJupiter("junit-jupiter-api"))
