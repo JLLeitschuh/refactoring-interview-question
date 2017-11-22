@@ -14,11 +14,9 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 import org.company.library.graph.Node;
 import org.hamcrest.MatcherAssert;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-@Disabled("TODO: These tests should all pass when you are done.")
 class DijkstraTest {
 
   @ParameterizedTest

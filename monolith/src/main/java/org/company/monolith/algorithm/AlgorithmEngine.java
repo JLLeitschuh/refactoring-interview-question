@@ -5,6 +5,8 @@ import javax.inject.Singleton;
 import org.company.external.engine.Engine;
 import org.company.external.event.EventTransmitter;
 import org.company.external.uuid.UUIDProducer;
+import org.company.library.algorithm.Algorithm;
+import org.company.library.event.EventSender;
 import org.company.monolith.service.GraphService;
 import org.company.monolith.service.PathsService;
 
@@ -20,11 +22,32 @@ public class AlgorithmEngine implements Engine {
       final PathsService pathsService,
       final EventTransmitter eventTransmitter,
       final UUIDProducer uuidProducer) {
-    this.algorithm = new Algorithm(graphService, pathsService, eventTransmitter, uuidProducer);
+    this.algorithm =
+        new Algorithm(
+            () -> graphService.getAll(),
+            pathsService,
+            new EventSenderFromTransmitter(eventTransmitter, uuidProducer));
   }
 
   @Override
   public void doWork() {
     algorithm.runForAll();
+  }
+
+  static class EventSenderFromTransmitter implements EventSender {
+    private final EventTransmitter eventTransmitter;
+    private final UUIDProducer uuidProducer;
+
+    EventSenderFromTransmitter(
+        final EventTransmitter eventTransmitter, final UUIDProducer uuidProducer) {
+      this.eventTransmitter = eventTransmitter;
+      this.uuidProducer = uuidProducer;
+    }
+
+    @Override
+    public void sendEvent(String message) {
+      eventTransmitter.transmitEvent(
+          new AlgorithmEvent(uuidProducer.newFullyGuaranteedUniqueUUID(), message));
+    }
   }
 }
