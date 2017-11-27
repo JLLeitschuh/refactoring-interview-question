@@ -8,6 +8,7 @@ import javax.inject.Singleton;
 import org.company.external.database.Database;
 import org.company.external.uuid.UUIDProducer;
 import org.company.library.graph.Node;
+import org.company.library.service.Graph;
 
 @Singleton
 public final class GraphService {
