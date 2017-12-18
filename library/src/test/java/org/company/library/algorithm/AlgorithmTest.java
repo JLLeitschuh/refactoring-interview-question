@@ -12,13 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import org.company.library.event.EventSender;
 import org.company.library.event.Messages;
 import org.company.library.graph.Node;
-import org.junit.jupiter.api.Disabled;
+import org.company.library.service.Graph;
+import org.company.library.service.IGraphService;
 import org.junit.jupiter.api.Test;
 
-@Disabled("TODO: These tests should all pass when you are done.")
 public class AlgorithmTest {
   /**
    * @param graphs A fake of all of the graphs in the database.
@@ -26,8 +27,14 @@ public class AlgorithmTest {
    */
   static Algorithm create(
       final Map<UUID, ValueGraph<Node, Integer>> graphs, final EventSender eventSender) {
-    // TODO: Your job is to implement some logic to make these tests pass.
-    return null;
+    final IGraphService graphService =
+        () ->
+            graphs
+                .entrySet()
+                .stream()
+                .map(entry -> new Graph(entry.getKey(), entry.getValue()))
+                .collect(Collectors.toSet());
+    return new Algorithm(graphService, (graphUuid, sourceNode, shortestPath) -> {}, eventSender);
   }
 
   /** Calls {@link #create(Map, EventSender)} with only one element in the Map. */
