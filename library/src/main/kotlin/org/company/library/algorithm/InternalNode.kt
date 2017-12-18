@@ -1,4 +1,4 @@
-package org.company.monolith.algorithm
+package org.company.library.algorithm
 
 import org.company.library.graph.Node
 

@@ -1,10 +1,11 @@
 package org.company.monolith.algorithm;
 
 import com.google.common.collect.ListMultimap;
-import com.google.common.graph.ValueGraph;
+import com.google.common.graph.ImmutableValueGraph;
 import java.util.UUID;
 import org.company.external.event.EventTransmitter;
 import org.company.external.uuid.UUIDProducer;
+import org.company.library.algorithm.Dijkstra;
 import org.company.library.event.Messages;
 import org.company.library.graph.Node;
 import org.company.monolith.service.GraphService;
@@ -54,12 +55,14 @@ class Algorithm {
         .forEach(
             databaseGraph -> {
               final UUID uuid = databaseGraph.getUuid();
-              final ValueGraph<Node, Integer> graph = databaseGraph.getGraph();
+              final ImmutableValueGraph<Node, Integer> graph =
+                  ImmutableValueGraph.copyOf(databaseGraph.getGraph());
               sendEvent(Messages.beginningComputationForGraph(uuid));
-              final Dijkstra dijkstra = new Dijkstra(uuid, graphService);
               graph
                   .nodes()
-                  .forEach(node -> saveShortestPath(uuid, node, dijkstra.computeForSource(node)));
+                  .forEach(
+                      node ->
+                          saveShortestPath(uuid, node, Dijkstra.computeShortestPath(graph, node)));
               sendEvent(Messages.finishedComputingForGraph(uuid));
             });
   }
