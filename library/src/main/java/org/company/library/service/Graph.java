@@ -1,4 +1,4 @@
-package org.company.monolith.service;
+package org.company.library.service;
 
 import com.google.common.graph.ValueGraph;
 import java.util.UUID;

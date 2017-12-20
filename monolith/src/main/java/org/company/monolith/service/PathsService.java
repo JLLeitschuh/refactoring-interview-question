@@ -7,9 +7,10 @@ import javax.inject.Singleton;
 import org.company.external.database.Database;
 import org.company.external.uuid.UUIDProducer;
 import org.company.library.graph.Node;
+import org.company.library.service.IPathService;
 
 @Singleton
-public class PathsService {
+public class PathsService implements IPathService {
   @Inject private Database<Paths> database;
 
   @Inject private UUIDProducer uuidProducer;
@@ -19,6 +20,7 @@ public class PathsService {
    * @param sourceNode The source node that this path was generated for.
    * @param shortestPaths All of the paths calculated for this source node.
    */
+  @Override
   public void saveNew(
       final UUID graphUuid, final Node sourceNode, final ListMultimap<Node, Node> shortestPaths) {
     database.save(

@@ -9,16 +9,17 @@ import com.google.common.graph.MutableValueGraph;
 import com.google.common.graph.ValueGraph;
 import com.google.common.graph.ValueGraphBuilder;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import org.company.library.event.EventSender;
 import org.company.library.event.Messages;
 import org.company.library.graph.Node;
-import org.junit.jupiter.api.Disabled;
+import org.company.library.service.Graph;
 import org.junit.jupiter.api.Test;
 
-@Disabled("TODO: These tests should all pass when you are done.")
 public class AlgorithmTest {
   /**
    * @param graphs A fake of all of the graphs in the database.
@@ -26,8 +27,14 @@ public class AlgorithmTest {
    */
   static Algorithm create(
       final Map<UUID, ValueGraph<Node, Integer>> graphs, final EventSender eventSender) {
-    // TODO: Your job is to implement some logic to make these tests pass.
-    return null;
+    final Collection<Graph> graphCollection =
+        graphs
+            .entrySet()
+            .stream()
+            .map(entry -> new Graph(entry.getKey(), entry.getValue()))
+            .collect(Collectors.toList());
+    return new Algorithm(
+        () -> graphCollection, (graphUuid, sourceNode, shortestPaths) -> {}, eventSender);
   }
 
   /** Calls {@link #create(Map, EventSender)} with only one element in the Map. */
